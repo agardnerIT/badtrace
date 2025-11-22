@@ -4,6 +4,10 @@ CLI to generate OpenTelemetry traces with known "bad patterns". Adding your own 
 
 ## Quick Start
 
+1. Start an OpenTelemetry collector (command below assumes it's running locally at the HTTP endpoint is available at localhost:4318)
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run... 
+
 ```
 python app.py \
   --endpoint=http://localhost:4318 \
