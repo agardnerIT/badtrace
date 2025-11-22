@@ -48,7 +48,7 @@ def send_trace(endpoint, trace):
         json=trace,
         timeout=5 
     )
-    print(f"Status Code: {resp.status_code}. Content: {resp.content}")
+    logger.info(f"Status Code: {resp.status_code}. Content: {resp.content}")
 
 # This function takes an unsorted list of spans
 # then sorts and renames them according to start time
