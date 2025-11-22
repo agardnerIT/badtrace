@@ -13,7 +13,7 @@ python app.py \
   --scenario=scenario1
 ```
 
-Note: This tool emits traces via HTTP. It is intended to be used with an [OpenTelemetry collector](https://opentelemetry.io/docs/collector)
+Note: This tool emits traces via HTTP(S). It is intended to be used with an [OpenTelemetry collector](https://opentelemetry.io/docs/collector)
 
 ## Scenarios
 
