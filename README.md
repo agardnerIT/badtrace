@@ -90,5 +90,5 @@ Adding scenarios is easy! Either create an issue describing the scenario (we'll 
 
 Implement 1 function and add an `if` statement.
 
-1. Build your function in scenarios.py which will return a list of spans
+1. Build your function in [scenarios.py](scenarios.py) which will return a list of spans
 2. Add an `if` statement to the `build_spans` function in `utils.py`
