@@ -7,8 +7,8 @@ CLI to generate OpenTelemetry traces with known "bad patterns". Adding your own 
 ```
 python app.py \
   --endpoint=http://localhost:4318 \
-  --service-name=badtrace \
-  --trace-count=1 \
+  --service-name=badtrace \ # optional: defaults to "badtrace"
+  --trace-count=1 \ # optional: defaults to 1
   --insecure=true \
   --scenario=scenario1
 ```
@@ -38,7 +38,16 @@ python app.py \
 
 This scenario models a trace with (randomly) between 5 and 10 spans. Some of the spans will contain errors.
 
+```
+python app.py \
+  --endpoint=http://localhost:4318 \
+  --insecure=true \
+  --scenario=scenario2
+```
+
 ### Scenario 3 | Chatty client with one server
+
+<img width="1466" height="429" alt="Screenshot 2025-11-22 at 17 38 12" src="https://github.com/user-attachments/assets/beeaa5ea-a9d5-4e58-be05-813af00056fe" />
 
 This scenario models one service "serviceA" calling another "https://example.com" service many times.
 
@@ -49,3 +58,10 @@ This signifies a chatty service calling a single endpoint repeatedly.
 This scenario models one service "serviceA" calling multiple endpoints many times.
 
 This signifies a client that is chatty to not only one, but multiple endpoints.
+
+```
+python app.py \
+  --endpoint=http://localhost:4318 \
+  --insecure=true \
+  --scenario=scenario3
+```
