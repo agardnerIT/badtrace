@@ -168,7 +168,7 @@ def scenario3_span_list(trace_id):
     # Recommended value: True
     return spans, False
 
-#### Scenario 3 - Chatty service ####
+#### Scenario 4 - Chatty service ####
 # This scenario models one service "badtrace" calling many other services many times "https://example.com/service1", "https://example2.com/service3"  etc. many times
 # This signifies a chatty service where one client just hammers lots of external services
 ####
