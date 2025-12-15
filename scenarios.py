@@ -83,6 +83,19 @@ def scenario2_span_list(trace_id):
     logger.info(f"Will generate {number_of_spans_to_generate} spans for this trace")
     index = 1
 
+    # Below, the spans are generated
+    # Each span has a random chance of erroring
+    # This works but leads to an interesting situation
+    # in which perhaps ALL of the spans error (this isn't a problem for our use - more errors are OK)
+    # More concerning is the opposite - that NO spans error
+    # This results in a "clean, error free" trace - which isn't what we need
+    # So...
+    # Use this boolean to keep track of whether any particular span is in error
+    # If the loop gets to the end span and all previous spans are NOT in an error state
+    # We actually force the final span into an error state
+    # So that in each trace, 1 span is guaranteed to be in an error state
+    TRACE_HAS_ERRORS = False
+
     while index <= number_of_spans_to_generate:
         span_start_time = generate_span_start_time()
         span_end_time = time.time_ns()
@@ -92,9 +105,15 @@ def scenario2_span_list(trace_id):
         # if random int is <= 5 then it's an error
         if random.randint(1,20) <= 5:
            span_status_code = get_span_status_int("ERROR")
+           TRACE_HAS_ERRORS = True
         else:
            span_status_code = get_span_status_int("OK")
-        
+
+        # If this is the final span
+        # and the trace still doesn't have an error, force it now
+        if index == number_of_spans_to_generate-1 and not TRACE_HAS_ERRORS:
+           span_status_code = get_span_status_int("ERROR")
+
         span = {
                 "traceId": trace_id,
                 "spanId": secrets.token_hex(8),
